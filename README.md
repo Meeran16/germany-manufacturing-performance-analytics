@@ -1,220 +1,313 @@
 <div align="center">
 
-Germany Manufacturing Performance Analytics
+# Germany Manufacturing Performance Analytics
 
-SQL · Power BI · Power Query · DAX · SQLite · Official Destatis Data
+**Power BI · SQL · Power Query · DAX · SQLite · Official Destatis Data**
 
-A business-oriented analysis of German manufacturing performance across all 16 federal states, covering turnover, employment, export orientation, regional concentration, and changes from 2019 to 2025.
+Business-oriented analysis of German manufacturing performance across all 16 federal states, covering turnover, employment, foreign-turnover orientation, regional concentration, and changes from 2019 to 2025.
 
 </div>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Power%20BI-Dashboard-F2C811?logo=powerbi&logoColor=black" alt="Power BI">
-  <img src="https://img.shields.io/badge/SQL-SQLite-003B57?logo=sqlite&logoColor=white" alt="SQL SQLite">
-  <img src="https://img.shields.io/badge/Power%20Query-Data%20Preparation-217346?logo=microsoftexcel&logoColor=white" alt="Power Query">
-  <img src="https://img.shields.io/badge/DAX-KPI%20Measures-5E5E5E" alt="DAX">
-  <img src="https://img.shields.io/badge/Data-Destatis-004B76" alt="Destatis">
-</p>
+---
 
-Dashboard
+## Dashboard
 
+![German Manufacturing Performance Dashboard](docs/screenshots/dashboard_overview.png)
 
+The Power BI dashboard provides an interactive view of German manufacturing performance with a year selector, headline KPIs, and four analytical views:
 
-The Power BI dashboard provides an interactive view of German manufacturing performance with a year selector and four analytical perspectives:
+- headline KPIs for turnover, foreign-turnover share, employment, and establishments;
+- manufacturing turnover trend from 2019 to 2025;
+- federal-state turnover ranking for the selected year;
+- domestic versus foreign turnover over time;
+- workforce size versus manufacturing turnover across federal states.
 
-headline KPIs for turnover, foreign-turnover share, employment, and establishments;
+---
 
-manufacturing turnover trend from 2019 to 2025;
+## Project Overview
 
-federal-state turnover ranking for the selected year;
+This project uses official manufacturing statistics from the **Statistisches Bundesamt (Destatis) GENESIS-Online** database to examine how manufacturing activity differs across German federal states and how key indicators changed between 2019 and 2025.
 
-domestic versus foreign turnover over time;
+The analysis combines data preparation in **Power Query**, structured querying in **SQLite/SQL**, and interactive reporting with **Power BI and DAX**.
 
-workforce size versus manufacturing turnover across federal states.
+| Item | Scope |
+| --- | --- |
+| Data source | Destatis GENESIS-Online |
+| Table | `42111-0010` |
+| Original source coverage | 2005–2025 |
+| Primary analysis period | 2019–2025 |
+| Geographic coverage | 16 German federal states |
+| Processed observations | 112 state-year records |
+| Processed fields | 11 analytical columns |
+| Main tools | Power BI, SQL, Power Query, DAX, SQLite, Excel |
 
-Project Overview
+### Workflow
 
-This project uses official manufacturing statistics from the Statistisches Bundesamt (Destatis) GENESIS-Online database to examine how manufacturing activity differs across German federal states and how key indicators changed between 2019 and 2025.
+```text
+Official Destatis Data
+        ↓
+Power Query
+Cleaning · Transformation · Validation
+        ↓
+Processed Dataset
+112 rows · 11 columns
+        ↓
+SQLite / SQL
+Ranking · Growth · Ratios · Trends
+        ↓
+DAX Measures
+        ↓
+Power BI Dashboard
+```
 
-The analysis combines data preparation in Power Query, structured querying in SQLite/SQL, and interactive reporting with Power BI and DAX.
+---
 
-Item
+## Business Questions
 
-Scope
+The project is structured around five practical analytical questions:
 
-Data source
+1. Which federal states generate the highest manufacturing turnover?
+2. How did manufacturing turnover change between 2019 and 2025?
+3. Which states have the highest foreign-turnover share?
+4. How large is the manufacturing workforce in each state, and how does turnover per employee differ?
+5. How did total turnover, employment, establishments, and foreign-turnover share evolve over time?
 
-Destatis GENESIS-Online
+---
 
-Table
+## Key Findings
 
-42111-0010
+- Reported manufacturing turnover across the 16 states reached approximately **€2,125.0 billion in 2025**, compared with **€1,820.9 billion in 2019**, an increase of about **16.7% in nominal terms**.
 
-Primary analysis period
+- **Bayern** led 2025 manufacturing turnover with approximately **€465.6 billion**, followed by **Baden-Württemberg (€405.4B)** and **Nordrhein-Westfalen (€342.7B)**. Together, these three states represented about **57.1%** of 2025 turnover in the dataset.
 
-2019–2025
+- Foreign turnover represented **52.9%** of total reported manufacturing turnover in 2025, up from **50.8%** in 2019.
 
-Geographic coverage
+- **Bremen** had the highest foreign-turnover share in 2025 at **68.4%**, while Bayern generated the largest foreign-turnover amount in absolute terms.
 
-16 German federal states
+- The annual series shows a **-8.8%** nominal turnover change in 2020, followed by strong increases in 2021 and 2022. Turnover then changed by **+0.6% in 2023**, **-3.5% in 2024**, and **-1.4% in 2025**.
 
-Processed observations
+- Between 2019 and 2025, manufacturing employment decreased from approximately **5.70 million to 5.45 million**, while the number of establishments decreased from **23,337 to 22,217**.
 
-112 state-year records
+- **Mecklenburg-Vorpommern** recorded the largest percentage increase in nominal turnover between 2019 and 2025 at **+62.5%**, although from a relatively small base.
 
-Processed fields
+- **Bayern** recorded the largest absolute increase between 2019 and 2025 at approximately **+€101.5 billion**.
 
-11 analytical columns
+- **Saarland** was the only federal state in this endpoint comparison with lower nominal turnover in 2025 than in 2019, at approximately **-5.3%**.
 
-Main tools
+---
 
-SQL, SQLite, Power Query, Power BI, DAX
+## Key Numbers
 
-Business Questions
+| Metric | Result |
+| --- | ---: |
+| 2019 total manufacturing turnover | €1,820.9B |
+| 2025 total manufacturing turnover | €2,125.0B |
+| Nominal turnover change, 2019–2025 | +16.7% |
+| 2019 foreign-turnover share | 50.8% |
+| 2025 foreign-turnover share | 52.9% |
+| 2019 employment | 5.70M |
+| 2025 employment | 5.45M |
+| 2019 establishments | 23,337 |
+| 2025 establishments | 22,217 |
+| Largest 2025 turnover | Bayern — €465.6B |
+| Top-three 2025 turnover share | 57.1% |
+| Highest 2025 foreign-turnover share | Bremen — 68.4% |
+| Largest percentage increase, 2019–2025 | Mecklenburg-Vorpommern — +62.5% |
+| Largest absolute increase, 2019–2025 | Bayern — +€101.5B |
+| Only endpoint decline, 2019–2025 | Saarland — -5.3% |
 
-The project is structured around practical analytical questions:
+---
 
-Which federal states generate the highest manufacturing turnover?
+## Data Preparation
 
-How did manufacturing turnover change between 2019 and 2025?
-
-Which states have the highest foreign-turnover share?
-
-How large is the manufacturing workforce in each state, and how does turnover per employee differ?
-
-How did total turnover, employment, establishments, and foreign-turnover share evolve over time?
-
-Key Findings
-
-Reported manufacturing turnover across the 16 states reached approximately €2,125.0 billion in 2025, compared with €1,820.9 billion in 2019, an increase of about 16.7% in nominal terms.
-
-Bayern led 2025 manufacturing turnover with approximately €465.6 billion, followed by Baden-Württemberg (€405.4B) and Nordrhein-Westfalen (€342.7B). Together, these three states represented about 57.1% of 2025 turnover in the dataset.
-
-Foreign turnover represented 52.9% of total reported manufacturing turnover in 2025, up from 50.8% in 2019.
-
-Bremen had the highest foreign-turnover share in 2025 at 68.4%, while Bayern generated the largest foreign-turnover amount in absolute terms.
-
-The annual series shows a -8.8% nominal turnover change in 2020, followed by strong increases in 2021 and 2022. Turnover then changed by +0.6% in 2023, -3.5% in 2024, and -1.4% in 2025.
-
-Between 2019 and 2025, manufacturing employment decreased from about 5.70 million to 5.45 million, while the number of establishments decreased from 23,337 to 22,217.
-
-Mecklenburg-Vorpommern recorded the largest percentage increase in nominal turnover between 2019 and 2025 (+62.5%) from a relatively small base, while Bayern recorded the largest absolute increase (+€101.5B).
-
-Saarland was the only federal state in this comparison with lower nominal turnover in 2025 than in 2019 (-5.3%).
-
-Data Preparation
-
-The original Destatis CSV is preserved unchanged in data/raw.
+The original Destatis CSV is preserved unchanged in [`data/raw`](data/raw/).
 
 Power Query was used to create the analytical dataset through the following steps:
 
-parsed the semicolon-delimited Destatis source;
+1. Parsed the semicolon-delimited Destatis source.
+2. Removed source metadata and header rows.
+3. Restricted the analysis to **2019–2025**.
+4. Removed repeated status-marker fields from the analytical table.
+5. Renamed German source fields using consistent English analytical names.
+6. Assigned appropriate text and whole-number data types.
+7. Checked column quality for missing values and conversion errors.
+8. Verified that every `federal_state + year` combination occurs exactly once.
 
-removed source metadata/header rows;
+The resulting dataset contains:
 
-restricted the analysis to 2019–2025;
+**16 federal states × 7 years = 112 state-year observations**
 
-removed repeated status-marker fields from the analytical table;
+with **11 analytical columns**.
 
-renamed German source fields to consistent analyst-friendly English names;
+### Processed Columns
 
-assigned appropriate text and whole-number data types;
+| Column | Description |
+| --- | --- |
+| `federal_state` | German federal state |
+| `year` | Reporting year |
+| `establishments` | Number of manufacturing establishments |
+| `employees` | Number of employees |
+| `hours_worked_thousands` | Hours worked, reported in thousands |
+| `gross_wages_salaries_thousand_eur` | Gross wages and salaries in thousand EUR |
+| `total_turnover_thousand_eur` | Total manufacturing turnover in thousand EUR |
+| `domestic_turnover_thousand_eur` | Domestic turnover in thousand EUR |
+| `foreign_turnover_thousand_eur` | Foreign turnover in thousand EUR |
+| `eurozone_turnover_thousand_eur` | Eurozone turnover in thousand EUR |
+| `non_eurozone_turnover_thousand_eur` | Non-Eurozone turnover in thousand EUR |
 
-checked column quality for missing values and conversion errors;
+### Data Quality Checks
 
-verified that every federal_state + year combination occurs exactly once.
+The final processed dataset was validated before analysis:
 
-The resulting dataset contains 112 rows (16 states × 7 years) and 11 columns.
+- **112 expected rows**;
+- **16 unique federal states**;
+- years restricted to **2019–2025**;
+- **100% valid values** in the selected analytical columns;
+- **0 conversion errors**;
+- **0 empty values** in the selected analytical fields;
+- each `federal_state + year` combination occurs exactly once.
 
-The processed dataset is available at:
+### Files
 
-data/processed/manufacturing_by_state_2019_2025.csv
+Processed dataset:
 
-The Power Query workbook is preserved at:
+[`data/processed/manufacturing_by_state_2019_2025.csv`](data/processed/manufacturing_by_state_2019_2025.csv)
 
-excel/manufacturing_data_cleaning.xlsx
+Power Query workbook:
 
-SQL Analysis
+[`excel/manufacturing_data_cleaning.xlsx`](excel/manufacturing_data_cleaning.xlsx)
+
+---
+
+## SQL Analysis
 
 The cleaned dataset was imported into SQLite and analyzed with five focused SQL queries.
 
-Analysis
+| Analysis | SQL File | Techniques |
+| --- | --- | --- |
+| 2025 state turnover ranking and share | [`01_state_turnover_ranking.sql`](sql/01_state_turnover_ranking.sql) | Filtering, sorting, window aggregation |
+| 2019–2025 turnover change | [`02_turnover_change_2019_2025.sql`](sql/02_turnover_change_2019_2025.sql) | CTE, `CASE`, aggregation |
+| 2025 foreign-turnover orientation | [`03_export_orientation_2025.sql`](sql/03_export_orientation_2025.sql) | Ratios, filtering, ranking |
+| Employment and turnover per employee | [`04_employment_turnover_per_employee_2025.sql`](sql/04_employment_turnover_per_employee_2025.sql) | Calculated metrics, ranking |
+| Annual manufacturing trend | [`05_annual_manufacturing_trend.sql`](sql/05_annual_manufacturing_trend.sql) | CTEs, `SUM`, `LAG()`, YoY analysis |
 
-SQL file
+### What Each Query Answers
 
-Techniques
+**1. State Turnover Ranking**
 
-2025 state turnover ranking and share
+Which federal states generated the most manufacturing turnover in 2025, and what share of total turnover did each state represent?
 
-01_state_turnover_ranking.sql
+**2. Turnover Change: 2019–2025**
 
-filtering, sorting, window aggregation
+Which states recorded the largest nominal increases or decreases in manufacturing turnover?
 
-2019–2025 turnover change
+**3. Foreign-Turnover Orientation**
 
-02_turnover_change_2019_2025.sql
+Which states generated the highest proportion of their manufacturing turnover from foreign markets?
 
-CTE, CASE, aggregation
+**4. Employment and Turnover per Employee**
 
-2025 foreign-turnover orientation
+How large is the manufacturing workforce in each state, and how does turnover per employee differ?
 
-03_export_orientation_2025.sql
+**5. Annual Manufacturing Trend**
 
-ratios, filtering, ranking
+How did turnover, employment, establishments, domestic turnover, foreign turnover, and foreign-turnover share develop between 2019 and 2025?
 
-Employment and turnover per employee
+### SQLite Database
 
-04_employment_turnover_per_employee_2025.sql
+[`database/germany_manufacturing.db`](database/germany_manufacturing.db)
 
-calculated metrics, ranking
+---
 
-Annual manufacturing trend
+## Power BI and DAX
 
-05_annual_manufacturing_trend.sql
+The Power BI report uses reusable DAX measures rather than fixed dashboard values.
 
-CTEs, SUM, LAG() window function, YoY analysis
+This allows KPI cards and regional visuals to react dynamically to the selected year.
 
-The SQLite database is included at:
+### DAX Measures
 
-database/germany_manufacturing.db
+#### Total Turnover
 
-Power BI and DAX
-
-The Power BI report uses reusable DAX measures rather than fixed dashboard values. This allows the KPI cards and regional visuals to react dynamically to the selected year.
-
-Core measures include:
-
+```DAX
 Total Turnover (B EUR) =
 DIVIDE(
     SUM(Manufacturing[total_turnover_thousand_eur]),
     1000000
 )
+```
 
+#### Foreign Turnover
+
+```DAX
+Foreign Turnover (B EUR) =
+DIVIDE(
+    SUM(Manufacturing[foreign_turnover_thousand_eur]),
+    1000000
+)
+```
+
+#### Domestic Turnover
+
+```DAX
+Domestic Turnover (B EUR) =
+DIVIDE(
+    SUM(Manufacturing[domestic_turnover_thousand_eur]),
+    1000000
+)
+```
+
+#### Total Employees
+
+```DAX
+Total Employees =
+SUM(Manufacturing[employees])
+```
+
+#### Total Establishments
+
+```DAX
+Total Establishments =
+SUM(Manufacturing[establishments])
+```
+
+#### Foreign Turnover Share
+
+```DAX
 Foreign Turnover Share =
 DIVIDE(
     [Foreign Turnover (B EUR)],
     [Total Turnover (B EUR)]
 )
+```
 
-Additional measures calculate:
+### Dashboard Components
 
-domestic turnover;
+The final Power BI report contains:
 
-foreign turnover;
+- **Total Turnover** KPI;
+- **Foreign Turnover Share** KPI;
+- **Total Employees** KPI;
+- **Total Establishments** KPI;
+- federal-state turnover ranking;
+- workforce versus manufacturing turnover scatter plot;
+- manufacturing turnover trend from 2019 to 2025;
+- domestic versus foreign turnover trend;
+- year selector for interactive analysis.
 
-total employees;
+### Power BI Report
 
-total establishments.
+[`powerbi/germany_manufacturing_dashboard.pbix`](powerbi/germany_manufacturing_dashboard.pbix)
 
-The report file is available at:
+---
 
-powerbi/germany_manufacturing_dashboard.pbix
+## Repository Structure
 
-Repository Structure
-
+```text
 germany-manufacturing-performance-analytics/
 │
 ├── README.md
+│
 ├── data/
 │   ├── raw/
 │   │   ├── 42111-0010_de.csv
@@ -241,55 +334,65 @@ germany-manufacturing-performance-analytics/
 └── docs/
     └── screenshots/
         └── dashboard_overview.png
+```
 
-Data Source and Licence
+---
 
-Source: Statistisches Bundesamt (Destatis), GENESIS-Online
-Table: 42111-0010 — manufacturing establishments, employment and turnover by German federal state and year
-Original source coverage: 2005–2025
-Primary analysis period: 2019–2025
+## Data Source and Licence
+
+**Source:** Statistisches Bundesamt (Destatis), GENESIS-Online  
+**Table:** `42111-0010` — manufacturing establishments, employment and turnover by German federal state and year  
+**Original source coverage:** 2005–2025  
+**Primary analysis period:** 2019–2025
 
 The original source file is retained without modification in the repository.
 
-GENESIS-Online data is provided under the Data Licence Germany — Attribution — Version 2.0.
+GENESIS-Online data is provided under the **Data Licence Germany — Attribution — Version 2.0**.
 
 Source attribution:
 
-© Statistisches Bundesamt (Destatis)
+> © Statistisches Bundesamt (Destatis)
 
-Additional source information is documented in data/raw/SOURCE.md.
+Additional source information is documented in:
 
-Analytical Limitations
+[`data/raw/SOURCE.md`](data/raw/SOURCE.md)
 
-Turnover values are nominal and are not adjusted for inflation; changes should not be interpreted as real output growth.
+---
 
-turnover per employee is a descriptive ratio and is not treated as a productivity measure.
+## Analytical Limitations
 
-The dataset contains aggregated state-level statistics rather than company-level transactions.
+- Turnover values are **nominal** and are not adjusted for inflation. Changes therefore should not be interpreted as real manufacturing-output growth.
 
-Cost and profit information is not available, so profitability and profit-margin metrics are intentionally not calculated.
+- `Turnover per employee` is a descriptive ratio and is **not treated as a productivity measure**.
 
-Differences between states can reflect industry composition, capital intensity, price effects, and other structural factors not isolated by this analysis.
+- The dataset contains aggregated federal-state-level statistics rather than company-level observations.
 
-Reproducing the Analysis
+- Cost and profit information is not available, so profitability and profit-margin metrics are intentionally not calculated.
+
+- Differences between federal states can reflect industry composition, capital intensity, price effects, workforce structure, and other factors not isolated by this analysis.
+
+---
+
+## Reproducing the Analysis
 
 Clone the repository:
 
+```bash
 git clone https://github.com/Meeran16/germany-manufacturing-performance-analytics.git
 cd germany-manufacturing-performance-analytics
+```
 
 Then:
 
-open database/germany_manufacturing.db with SQLite-compatible software to inspect the analytical database;
+- open `database/germany_manufacturing.db` with SQLite-compatible software to inspect the analytical database;
+- run the scripts in `sql/` to reproduce the SQL analyses;
+- open `excel/manufacturing_data_cleaning.xlsx` to review the Power Query preparation workflow;
+- open `powerbi/germany_manufacturing_dashboard.pbix` in Power BI Desktop to explore the interactive dashboard.
 
-run the scripts in sql/ to reproduce the SQL analyses;
-
-open excel/manufacturing_data_cleaning.xlsx to review the Power Query preparation workflow;
-
-open powerbi/germany_manufacturing_dashboard.pbix in Power BI Desktop to explore the interactive dashboard.
+---
 
 <div align="center">
 
-Official German data → Power Query → SQLite / SQL → DAX → Power BI
+**Official German Data → Power Query → SQLite / SQL → DAX → Power BI**
 
 </div>
