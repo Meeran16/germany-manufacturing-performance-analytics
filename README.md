@@ -28,7 +28,7 @@ The Power BI dashboard provides an interactive overview of German manufacturing 
 
 ---
 
-## Project in One Minute
+## Project
 
 This project analyzes German manufacturing performance across all **16 federal states** using official data from the **Statistisches Bundesamt (Destatis) GENESIS-Online** database.
 
